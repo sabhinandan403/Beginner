@@ -1,0 +1,17 @@
+#include<iostream>
+using namespace std;
+int main(){
+    int sqdnumber;
+    cin>>sqdnumber;
+    int sqdNumber_result=0;
+    for( ; ;){
+        if( sqdnumber!=0){
+            int present_number=sqdnumber%10;
+            present_number=present_number*present_number;
+            sqdNumber_result=sqdNumber_result+present_number;
+            cout<<sqdNumber_result;
+            int a=sqdnumber/10;
+            sqdnumber=a;
+        }
+    }
+}
