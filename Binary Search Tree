@@ -1,0 +1,85 @@
+#include<iostream.h>
+#include<conio.h>
+#include<alloc.h>
+
+struct node {
+int data;
+struct node *left;
+struct node *right;
+};
+
+// insert a node in the tree
+void insert(struct node **r, int num)
+{
+if(*r == NULL)
+{
+(*r) = (struct node*)malloc(sizeof(struct node));
+(*r)->left = NULL;
+(*r)->data = num;
+(*r)->right = NULL;
+}
+else
+{
+// search for the node to which the new node is to be attached
+if(num < (*r)->data)
+insert(&((*r)->left), num);
+else
+insert(&((*r)->right), num);
+}
+}
+
+void inorder(struct node *r)
+{
+if(r != NULL)
+{
+inorder(r->left);
+cout<<r->data<<” “;
+inorder(r->right);
+}
+else return;
+}
+
+void preorder(struct node *r)
+{
+if(r != NULL)
+{
+cout<<r->data<<” “;
+preorder(r->left);
+preorder(r->right);
+}
+else return;
+}
+
+void postorder(struct node *r)
+{
+if(r != NULL)
+{
+postorder(r->left);
+postorder(r->right);
+cout<<r->data<<” “;
+}
+else return;
+}
+
+void main()
+{
+struct node *root = NULL;
+int req = 10, i = 1, num;
+clrscr();
+while(i++ <= req)
+{
+cout<<“Enter the data : “;
+cin>>num;
+insert(&root, num);
+}
+cout<<“Inorder traversal : “;
+inorder(root);
+cout<<endl;
+cout<<“Preorder traversal : “;
+preorder(root);
+cout<<endl;
+cout<<“Postorder traversal : “;
+postorder(root);
+cout<<endl;
+getch();
+}
